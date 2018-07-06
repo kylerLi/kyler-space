@@ -4,7 +4,7 @@
 <body  th:fragment="mgt">
 <div class="panel-heading" style="margin:0% 4%">【系統管理】</div>
 <div style="margin:0% 4%">
-				<aside class="left-side" style="top: 93px;background:#fff">
+				<div class="left-side" style="top: 93px;background:#fff">
 					<!-- sidebar: style can be found in sidebar.less -->
 					<section class="sidebar">
 						<form action="#" method="get" class="sidebar-form">
@@ -38,13 +38,9 @@
 						</ul>
 					</section>
 					<!-- /.sidebar -->
-				</aside>
-
+				</div>
 				<div class="right-side">
-
-					<div th:replace='markdown/markdown_edit :: markdown_edit'></div>
-
-                    
+					<div th:replace='markdown/edit :: edit'></div>
 				</div>
 	</div>
 

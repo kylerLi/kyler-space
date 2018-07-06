@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kyler.space.sys.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.kyler.space.sys.pojo.Article" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_date_time" property="createDateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="update_date_time" property="updateDateTime" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="tag_id" property="tagId" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
+    
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.createDateTime != null" >
+         and create_date_time = #{condition.createDateTime}
+      </if>
+      <if test="condition.status != null" >
+         and status = #{condition.status}
+      </if>
+      <if test="condition.updateDateTime != null" >
+         and update_date_time = #{condition.updateDateTime}
+      </if>
+      <if test="condition.version != null" >
+         and version = #{condition.version}
+      </if>
+      <if test="condition.keywords != null" >
+         and keywords = #{condition.keywords}
+      </if>
+      <if test="condition.title != null" >
+         and title = #{condition.title}
+      </if>
+      <if test="condition.userId != null" >
+         and user_id = #{condition.userId}
+      </if>
+      <if test="condition.code != null" >
+         and code = #{condition.code}
+      </if>
+      <if test="condition.author != null" >
+         and author = #{condition.author}
+      </if>
+      <if test="condition.tagId != null" >
+         and tag_id = #{condition.tagId}
+      </if>
+      <if test="condition.content != null" >
+         and content = #{condition.content}
+      </if>
+      <if test="condition.summary != null" >
+         and summary = #{condition.summary}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_date_time, status, update_date_time, version, keywords, title, user_id, 
+    code, author, tag_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, summary
+  </sql>
+ 
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blog_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from blog_article
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.kyler.space.common.Criteria" >
+    delete from blog_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kyler.space.sys.pojo.Article" >
+    insert into blog_article (id, create_date_time, status, update_date_time, version, keywords, 
+      title, user_id, code, author, tag_id, content, summary)
+    values (#{id}, #{createDateTime}, #{status}, #{updateDateTime}, #{version}, #{keywords}, 
+      #{title}, #{userId}, #{code}, #{author}, #{tagId}, #{content}, #{summary})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kyler.space.sys.pojo.Article" >
+    insert into blog_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createDateTime != null" >
+        create_date_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="tagId != null" >
+        tag_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="updateDateTime != null" >
+        #{updateDateTime},
+      </if>
+      <if test="version != null" >
+        #{version},
+      </if>
+      <if test="keywords != null" >
+        #{keywords},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="author != null" >
+        #{author},
+      </if>
+      <if test="tagId != null" >
+        #{tagId},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="summary != null" >
+        #{summary},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.kyler.space.common.Criteria" resultType="java.lang.Integer" >
+    select count(*) from blog_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update blog_article
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.createDateTime != null" >
+        create_date_time = #{record.createDateTime},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status},
+      </if>
+      <if test="record.updateDateTime != null" >
+        update_date_time = #{record.updateDateTime},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version},
+      </if>
+      <if test="record.keywords != null" >
+        keywords = #{record.keywords},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author},
+      </if>
+      <if test="record.tagId != null" >
+        tag_id = #{record.tagId},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content},
+      </if>
+      <if test="record.summary != null" >
+        summary = #{record.summary},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateByParams" parameterType="map" >
+    update blog_article
+    set id = #{record.id},
+      create_date_time = #{record.createDateTime},
+      status = #{record.status},
+      update_date_time = #{record.updateDateTime},
+      version = #{record.version},
+      keywords = #{record.keywords},
+      title = #{record.title},
+      user_id = #{record.userId},
+      code = #{record.code},
+      author = #{record.author},
+      tag_id = #{record.tagId}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kyler.space.sys.pojo.Article" >
+    update blog_article
+    <set >
+      <if test="createDateTime != null" >
+        create_date_time = #{createDateTime},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time = #{updateDateTime},
+      </if>
+      <if test="version != null" >
+        version = #{version},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords},
+      </if>
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="author != null" >
+        author = #{author},
+      </if>
+      <if test="tagId != null" >
+        tag_id = #{tagId},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.kyler.space.sys.pojo.Article" >
+    update blog_article
+    set create_date_time = #{createDateTime},
+      status = #{status},
+      update_date_time = #{updateDateTime},
+      version = #{version},
+      keywords = #{keywords},
+      title = #{title},
+      user_id = #{userId},
+      code = #{code},
+      author = #{author},
+      tag_id = #{tagId}
+    where id = #{id}
+  </update>
+</mapper>

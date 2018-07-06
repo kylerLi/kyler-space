@@ -1,5 +1,13 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="edit">
 <header th:replace="markdown/resources::resources-md">
+<style type="text/css">
+    .box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+</style>
 </header>
 <body th:fragment="markdown_edit" >
 <div class="row" style="height:20px"></div>
@@ -74,18 +82,12 @@
             </div>
         </div>
     </div>
-<script src="../../static/js/common/libs/markdown/editor.md/js/editormd.min.js" th:src="@{js/common/libs/markdown/editor.md/js/editormd.min.js}" type="text/javascript"></script>
-<script src="../../static/js/common/libs/tagsinput/bootstrap-tagsinput.min.js" th:src="@{js/common/libs/tagsinput/bootstrap-tagsinput.min.js}" type="text/javascript"></script>
-
+<script th:src="@{/js/jquery.min.js}" src="/js/jquery.min.js"></script>
+<script th:src="@{/editormd/js/editormd.js}" src="/editormd/js/editormd.js"></script>
 <script type="text/javascript">
 var editor;
 
 $(function () {
-    //---初始化控件-----
-
-    //-----数据回填-------------
-
-
     //文章标题
     $("#title").on("change",function(event){
         var $title=$(event.target);
@@ -106,30 +108,31 @@ $(function () {
     //markdown 默认内容
     var markdownContent = null;
 
-    editor = editormd("editormd", {
-
-        path: '/static/js/common/libs/markdown/editor.md/lib',
-        autoHeight:false,
-
-        codeFold : true,
-        searchReplace : true,
+    editor = editormd("test-editormd", {
+        width   : "90%",
+        height  : 640,
+        syncScrolling : "single",
+        //你的lib目录的路径，我这边用JSP做测试的
+        tocm : true, // Using [TOCM]
+        tex : true, // 开启科学公式TeX语言支持，默认关闭
+        flowChart : true, // 开启流程图支持，默认关闭
+        path : "/editormd/lib/",
+        //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
         saveHTMLToTextarea : true,
-
-        htmlDecode: "style,script,iframe",
-        tex: true,
-        emoji: true,
-        taskList: true,
-        flowChart: true,
-        sequenceDiagram: true,
-        markdown: "本Markdown编辑器使用**Editor.md**修改而来，用它写技术文章，将会带来全新的体验哦：- **Markdown和扩展Markdown简洁的语法**",
-        syncScrolling:true,
-
-        //图片上传
-        imageUpload: true,
-        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL: "${basePath}/file/markdownUpload",
-        onchange: function () {
+        imageUpload : true,
+        imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
+        imageUploadURL : "/uploadimg",
+        onload: function () {
+            //console.log('onload', this);
+            //this.fullscreen();
+            //this.unwatch();
+            //this.watch().fullscreen();
+            this.width("100%");
+            this.height(480);
+            //this.resize("100%", 640);
         }
+
+
     });
 
 
