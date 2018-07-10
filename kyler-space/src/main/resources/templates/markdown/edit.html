@@ -263,10 +263,10 @@ $(function () {
         obj_md["content"]=editor.getMarkdown();
         obj_md["keywords"]=$("#keywords").val();
         obj_md["title"]=$("#title").val();
-        obj_md["id"]="${id?default('')}";
+       // obj_md["id"]="${id?default('')}";
         $.ajax({
             type: "post",
-            url: "article/save",
+            url: "articles/save",
             async: false,
             data:obj_md,
             success: function (result) {

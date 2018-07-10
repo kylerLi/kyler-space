@@ -44,31 +44,25 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Article> selectByParams(Criteria example) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.articleMapper.selectByParams(example);
 	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Article record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.articleMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public int updateByPrimaryKey(Article record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.articleMapper.updateByPrimaryKey(record);
 	}
 
 	@Override
 	public Article selectByPrimaryKey(String id) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateByParamsSelective(Article record, Criteria example) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.articleMapper.selectByPrimaryKey(id);
 	}
 
 }

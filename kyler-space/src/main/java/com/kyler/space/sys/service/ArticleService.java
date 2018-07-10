@@ -20,8 +20,6 @@ public interface ArticleService {
 
     int deleteByParams(Criteria example);
 
-    int updateByParamsSelective(Article record, Criteria example);
-
     int insert(Article record);
 
     int insertSelective(Article record);

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,30 +23,30 @@ import com.kyler.space.sys.service.ArticleService;
 /**
  * 项目
  */
-@RestController("/articles")
+@Controller
 public class ArticleRestController {
 
    @Autowired
 	public ArticleService articleService;
    
-    @RequestMapping(method = RequestMethod.GET, value = "/{articleSid}")
+    @RequestMapping(method = RequestMethod.GET, value = "/articles/{articleSid}")
 	@ResponseBody
     private RestResult findArticleById(@PathVariable String articleSid){
     	Article article = this.articleService.selectByPrimaryKey(articleSid);
 		return new RestResult(RestResult.SUCCESS, "", article);
 	}
 	
-	@GetMapping("/list")
-	public List<Article> selectArticles(){
+	@GetMapping("/articles/list")
+	@ResponseBody
+	public List<Article> selectArticles(HttpServletRequest request){
 		Criteria example = new Criteria();
-		List<Article> article = this.articleService.selectByParams(example);
-		
-		return article;
+		List<Article> articles = this.articleService.selectByParams(example);
+		return articles;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/")
+	@RequestMapping(method = RequestMethod.POST, value = "/articles/save")
     @ResponseBody
-    private RestResult insertArticle(Article article, HttpServletRequest request){
+    private RestResult saveArticle(Article article, HttpServletRequest request){
 		int result = 0;
 		if(null != article){
 			result = this.articleService.insertSelective(article);
@@ -57,7 +58,7 @@ public class ArticleRestController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/{articleSid}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/articles/{articleSid}")
     @ResponseBody
     private RestResult updateArticle(@PathParam("articleSid")int articleSid,Article article, HttpServletRequest request){
 		int result = 0;
@@ -71,7 +72,7 @@ public class ArticleRestController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE,value = "/{articleSid}")
+	@RequestMapping(method = RequestMethod.DELETE,value = "/articles/{articleSid}")
     @ResponseBody
     private RestResult deleteArticle(@PathVariable String articleSid){
 		int result = this.articleService.deleteByPrimaryKey(articleSid);

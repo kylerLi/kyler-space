@@ -91,12 +91,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kyler.space.sys.pojo.Article" >
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      SELECT UUID()
+    </selectKey>
     insert into blog_article (id, create_date_time, status, update_date_time, version, keywords, 
       title, user_id, code, author, tag_id, content, summary)
     values (#{id}, #{createDateTime}, #{status}, #{updateDateTime}, #{version}, #{keywords}, 
       #{title}, #{userId}, #{code}, #{author}, #{tagId}, #{content}, #{summary})
   </insert>
   <insert id="insertSelective" parameterType="com.kyler.space.sys.pojo.Article" >
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      SELECT UUID()
+    </selectKey>
     insert into blog_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

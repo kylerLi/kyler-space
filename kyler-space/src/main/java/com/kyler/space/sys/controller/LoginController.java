@@ -17,31 +17,48 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
     public String index(HttpServletRequest request) {
-	    List<Map<String,Object>> lists = new ArrayList<>();
-	    Map<String,Object> maps = new HashMap<>();
-	    maps.put("blog", "markdown");
-	    lists.add(maps);
-	    request.setAttribute("lists", lists);
+	    
+	    request.setAttribute("template_path", "ablout-me");
+	    request.setAttribute("template_fragment", "me");
+	    request.setAttribute("level", 0);
         return "index";
-	 }
+	}
 	 
-	 @RequestMapping(method = RequestMethod.GET, value = "/markdown_edit")
-	    public String markdown(HttpServletRequest request) {
-	        return "markdown/markdown_edit";
-	 }
-	 
-     @RequestMapping("edit2")
-     public String   editor2(){
-         return "markdown/edit2";
-     }
-     
-     @RequestMapping("edit")
-	    public String   editor(){
-	        return "markdown/edit";
-	    }
- 
-	 @RequestMapping(method = RequestMethod.GET, value = "/markdown_demo")
-	    public String demo(HttpServletRequest request) {
-	        return "markdown/demo";
-	 }
+	@RequestMapping(method = RequestMethod.GET, value = "/system")
+    public String system(HttpServletRequest request) {
+		request.setAttribute("template_path", "system/sys-m-mgt");
+		request.setAttribute("path", "markdown/article_edit");
+		request.setAttribute("fragment", "edit");
+		request.setAttribute("level", 1);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/system/article_list")
+    public String article_list(HttpServletRequest request) {
+		request.setAttribute("template_path", "system/sys-m-mgt");
+		request.setAttribute("path", "markdown/article_list");
+		request.setAttribute("fragment", "list");
+		request.setAttribute("level", 1);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/havefun")
+    public String edit(HttpServletRequest request) {
+		request.setAttribute("template_folder", "relax/havefun");
+		request.setAttribute("template_path", "fun");
+		request.setAttribute("level", 0);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/blog")
+    public String template(HttpServletRequest request) {
+		request.setAttribute("template_folder", "blog/blog_list");
+		request.setAttribute("template_path", "list");
+        return "index";
+	}
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/datatables")
+    public String datatables(HttpServletRequest request) {
+        return "datatables";
+	}
 }
