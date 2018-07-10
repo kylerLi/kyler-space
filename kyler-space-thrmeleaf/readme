@@ -1,8 +1,0 @@
-spring boot 1.5.8
-jdk 1.8+
-mysql 5.7
-
-src/main/resources/application.properties
-setting: port、database、context-path.
-
-http://${ip}:{port}/jycloud-portal
