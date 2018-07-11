@@ -18,42 +18,96 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
     public String index(HttpServletRequest request) {
 	    
-	    request.setAttribute("template_path", "ablout-me");
+	    request.setAttribute("template_path", "ablout");
 	    request.setAttribute("template_fragment", "me");
+	    request.setAttribute("active_head", "about");
 	    request.setAttribute("level", 0);
         return "index";
 	}
-	 
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/system")
     public String system(HttpServletRequest request) {
 		request.setAttribute("template_path", "system/sys-m-mgt");
 		request.setAttribute("path", "markdown/article_edit");
 		request.setAttribute("fragment", "edit");
+		request.setAttribute("active_left_menu", "article_edit");
+		request.setAttribute("active_head", "system");
 		request.setAttribute("level", 1);
         return "index";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/system/article_list")
+	 
+	@RequestMapping(method = RequestMethod.GET, value = "/markdown/article_edit")
+    public String article_edit(HttpServletRequest request) {
+		request.setAttribute("template_path", "system/sys-m-mgt");
+		request.setAttribute("path", "markdown/article_edit");
+		request.setAttribute("fragment", "edit");
+		request.setAttribute("active_left_menu", "article_edit");
+		request.setAttribute("active_head", "system");
+
+		request.setAttribute("level", 1);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/markdown/article_list")
     public String article_list(HttpServletRequest request) {
 		request.setAttribute("template_path", "system/sys-m-mgt");
 		request.setAttribute("path", "markdown/article_list");
 		request.setAttribute("fragment", "list");
+		request.setAttribute("active_left_menu", "article_list");
+		request.setAttribute("active_head", "system");
+
 		request.setAttribute("level", 1);
         return "index";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/havefun")
+	@RequestMapping(method = RequestMethod.GET, value = "/system/config_list")
+    public String config_list(HttpServletRequest request) {
+		request.setAttribute("template_path", "system/sys-m-mgt");
+		request.setAttribute("path", "system/config_list");
+		request.setAttribute("fragment", "list");
+		request.setAttribute("active_left_menu", "config_list");
+		request.setAttribute("level", 1);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/system/user_list")
+    public String user_list(HttpServletRequest request) {
+		request.setAttribute("template_path", "system/sys-m-mgt");
+		request.setAttribute("path", "system/user_list");
+		request.setAttribute("fragment", "list");
+		request.setAttribute("active_left_menu", "user_list");
+		request.setAttribute("active_head", "system");
+
+		request.setAttribute("level", 1);
+        return "index";
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/relax")
     public String edit(HttpServletRequest request) {
-		request.setAttribute("template_folder", "relax/havefun");
-		request.setAttribute("template_path", "fun");
+		request.setAttribute("template_path", "relax/havefun");
+		request.setAttribute("template_fragment", "havefun");
+		request.setAttribute("active_head", "havefun");
 		request.setAttribute("level", 0);
         return "index";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/blog")
+	@RequestMapping(method = RequestMethod.GET, value = "/blogs")
     public String template(HttpServletRequest request) {
-		request.setAttribute("template_folder", "blog/blog_list");
-		request.setAttribute("template_path", "list");
+		request.setAttribute("template_path", "blog/blog_list");
+		request.setAttribute("template_fragment", "blogs");
+		request.setAttribute("active_head", "blogs");
+		request.setAttribute("level", 0);
+        return "index";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/about")
+    public String about(HttpServletRequest request) {
+		request.setAttribute("template_path", "ablout");
+	    request.setAttribute("template_fragment", "me");
+	    request.setAttribute("active_head", "about");
+	    request.setAttribute("level", 0);
         return "index";
 	}
     

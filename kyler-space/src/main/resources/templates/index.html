@@ -1,38 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='Kyler.space',active='home'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='Kyler.space'">
 <header th:replace="resources::resources-file">
 <title>Kyler.space</title>
 </header>
 <body class="skin-black" >
-    <div th:include='header :: header'></div>
+    <div th:include='header :: header(${active_head})'></div>
     <div th:if="${level} == '0'">
         <div th:replace="@{${template_path}} :: ${template_fragment}"></div>
     </div>
     <div th:if="${level} == '1'">
-        <div th:replace="@{${template_path}} :: mgt(${path},${fragment})"></div>
+        <div th:replace="@{${template_path}} :: mgt(${path},${fragment},${active_left_menu})"></div>
     </div>	
     
     <div class="footer-main" th:fragment="footer">
 	    Copyright &copy; 2018.  <a href="http://www.kyler.space/" target="_blank" title="Kyler.space">Kyler.space</a>
     </div>
 </body>
-<script type="text/javascript">
-	$('input').on('ifChecked', function(event) {
-		// var element = $(this).parent().find('input:checkbox:first');
-		// element.parent().parent().parent().addClass('highlight');
-		$(this).parents('li').addClass("task-done");
-	});
-	$('input').on('ifUnchecked', function(event) {
-		// var element = $(this).parent().find('input:checkbox:first');
-		// element.parent().parent().parent().removeClass('highlight');
-		$(this).parents('li').removeClass("task-done");
-	});
-	
-	$('input[type="checkbox"].flat-grey, input[type="radio"].flat-grey')
-			.iCheck({
-				checkboxClass : 'icheckbox_flat-grey',
-				radioClass : 'iradio_flat-grey'
-    });
+<script src="/js/article/article-datatables.js" th:src="@{/js/article/article-datatables.js}" ></script>
 
+<script type="text/javascript">
+	
+	
 </script>
 </html>

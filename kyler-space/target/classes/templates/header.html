@@ -1,5 +1,5 @@
 
-	<header class="header" th:fragment="header">
+	<header class="header" th:fragment="header(active)">
 
 		<nav class="navbar navbar-static-top" role="navigation">
 			<!-- Sidebar toggle button-->
@@ -12,25 +12,25 @@
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<!-- Messages: style can be found in dropdown.less-->
-					<li class="dropdown messages-menu">
-					    <a th:href="@{'/about/'}" class="dropdown-toggle"> 
+					<li class="dropdown messages-menu" th:class="${active eq 'about'} ? head-bkg ">
+					    <a th:href="@{'/about'}"  th:class="${active eq 'about'} ? a-hover "> 
 					                 关于我
 					    </a>
 
 					</li>
-					<li class="dropdown tasks-menu">
-					    <a th:href="@{'/blog/list/'}" class="dropdown-toggle">
+					<li class="dropdown messages-menu" th:class="${active eq 'blogs'} ? head-bkg ">
+					    <a th:href="@{'/blogs'}" th:class="${active eq 'blogs'} ? a-hover "> 
 					                我的博文
 					    </a>
 
 					</li>
-					<li class="dropdown tasks-menu">
-					    <a th:href="@{'/relax/'}" class="dropdown-toggle" data-toggle="dropdown">
+					<li class="dropdown messages-menu" th:class="${active eq 'havefun'} ? head-bkg ">
+					    <a th:href="@{'/relax'}" th:class="${active eq 'havefun'} ? a-hover "> 
 					                休闲一刻
 					    </a>
 					</li>
-					<li class="dropdown tasks-menu">
-					    <a th:href="@{'/system/'}" class="dropdown-toggle">
+					<li class="dropdown messages-menu" th:class="${active eq 'system'} ? head-bkg ">
+					    <a th:href="@{'/system/'}" th:class="${active eq 'system'} ? a-hover "> 
 					                系统管理
 					    </a>
 					</li>

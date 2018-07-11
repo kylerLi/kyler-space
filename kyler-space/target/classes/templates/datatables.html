@@ -34,7 +34,6 @@
 						<th width="10%">发布时间</th>
 						<th width="10%">更新时间</th>
 						<th width="10%">浏览量</th>
-						<th width="10%"> 标签</th>
 						<th width="10%">发布状态</th>
 						<th width="10%">操作</th>
 					</tr>
@@ -44,21 +43,16 @@
 		</div>
 	</div>
 </div>
-<script src="/datatables/jquery.dataTables.min.js" th:src="@{/datatables/jquery.dataTables.min.js}" ></script>
-
-
-
-    
     <div class="footer-main" th:fragment="footer">
 	    Copyright &copy; 2018.  <a href="http://www.kyler.space/" target="_blank" title="Kyler.space">Kyler.space</a>
     </div>
 </body>
 <script src="/datatables/jquery.dataTables.min.js" th:src="@{/datatables/jquery.dataTables.min.js}" ></script>
+<!--
 <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
- 
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+ <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script> -->
 <script th:inline="javascript">
 /*<![CDATA[*/   
 
@@ -70,16 +64,21 @@ $(document).ready(function() {
         "bSort": false,
         "bInfo": false,
         "bAutoWidth": false,
-        "ajax": { url:basePath+"/articles/list" },
-        "columns": [
-             {data:'id'},
-			 {data:'title'},
-             {data:'keywords'},
-             {data:'author'},
-             {data:'createDateTime'},
-             {data:'updateDateTime'},
-             {data:'tagId'},
-             {data:'status'}
+        "sAjaxSource": basePath+"/articles/list",
+		"sAjaxDataProp": "",
+		"order": [[ 0, "asc" ]],
+		"language": { // 中文支持
+            "sUrl": "common/json/zh_CN.json"
+        },
+        "aoColumns": [
+             {"mData":'id'},
+			 {"mData":'title'},
+             {"mData":'keywords'},
+             {"mData":'author'},
+             {"mData":'createDateTime'},
+             {"mData":'updateDateTime'},
+             {"mData":'tagId'},
+             {"mData":'status'}
         ] /* ,
         'columnDefs': [{
             'targets': 0,

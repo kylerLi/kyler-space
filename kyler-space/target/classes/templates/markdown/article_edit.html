@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Edit</title>
+    <title>Kyler.space</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
     <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" href="/editormd/css/editormd.css"/>
     <link rel="stylesheet" th:href="@{/tagsinput/bootstrap-tagsinput.css}"  href="/tagsinput/bootstrap-tagsinput.css" />
@@ -266,11 +266,11 @@ $(function () {
        // obj_md["id"]="${id?default('')}";
         $.ajax({
             type: "post",
-            url: "articles/save",
+            url: "/articles/save",
             async: false,
             data:obj_md,
             success: function (result) {
-            	if(result.status == 200){
+            	if(result.status == 'success'){
             		alert(result.content)
             		localStorage.markdownContent = '';
             	}

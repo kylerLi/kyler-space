@@ -1003,7 +1003,7 @@ content: '';
 .navbar-nav > .notifications-menu > .dropdown-menu,
 .navbar-nav > .messages-menu > .dropdown-menu,
 .navbar-nav > .tasks-menu > .dropdown-menu {
-  width: 260px;
+  width: 400px;
   padding: 0 0 0 0!important;
   margin: 0!important;
   top: 100%;
@@ -1031,7 +1031,7 @@ content: '';
   padding: 7px 10px;
   border-bottom: 1px solid #f4f4f4;
   color: #444444;
-  font-size: 14px;
+  font-size: 16px;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li.header:after,
 .navbar-nav > .messages-menu > .dropdown-menu > li.header:after,
@@ -2897,9 +2897,9 @@ vertical-align: top;
   background-color: #ffffff;
   border-bottom: 1px solid #eee;
 }
-.skin-black .navbar .nav a {
+/* .skin-black .navbar .nav a {
   color: #333333;
-}
+} */
 .skin-black .navbar .nav > li > a:hover,
 .skin-black .navbar .nav > li > a:active,
 .skin-black .navbar .nav > li > a:focus,
@@ -4211,4 +4211,14 @@ padding: 6px 10px;
 }
 .st-blue {
   background-color: #23b7e5;
+}
+
+.head-bkg{
+  background: #333;
+}
+.a-hover{
+	display:block;
+    color: #f4f4f4;
+    text-decoration: none;
+    font-weight: normal;
 }
