@@ -17,9 +17,12 @@
     </div>
 </body>
 <script src="/js/article/article-datatables.js" th:src="@{/js/article/article-datatables.js}" ></script>
+<script src="../static/js/article/article-datatables.js" th:src="@{/js/article/article-datatables.js}" ></script>
 
 <script type="text/javascript">
-	
-	
+/*<![CDATA[*/ 
+	var article = new Articles();
+	article.initDataTables();
+	/*]]>*/
 </script>
 </html>
