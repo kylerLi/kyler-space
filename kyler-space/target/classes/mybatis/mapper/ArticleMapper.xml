@@ -13,6 +13,7 @@
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="tag_id" property="tagId" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
     
   </resultMap>
@@ -57,13 +58,18 @@
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_date_time, status, update_date_time, version, keywords, title, user_id, 
+    id, create_date_time, status, update_date_time, version, keywords, title, user_id, content,
     code, author, tag_id
   </sql>
   <sql id="Blob_Column_List" >
     content, summary
   </sql>
- 
+ <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blog_article
+    where id = #{id}
+  </select>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
     select
     <if test="distinct" >

@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,8 +46,9 @@ public class LoginController {
 		request.setAttribute("fragment", "edit");
 		request.setAttribute("active_left_menu", "article_edit");
 		request.setAttribute("active_head", "system");
-
+        
 		request.setAttribute("level", 1);
+		
         return "index";
 	}
 	

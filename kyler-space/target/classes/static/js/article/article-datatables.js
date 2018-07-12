@@ -9,7 +9,7 @@ var Articles = function(){
             bSort: false,
             bInfo: false,
             bAutoWidth: false,
-            sAjaxSource: "/articles/list",
+            sAjaxSource: "/articles",
     		sAjaxDataProp: "",
     		order: [[ 0, "asc" ]],
     		language: { // 中文支持
@@ -31,7 +31,7 @@ var Articles = function(){
                  	 var content =
                  		 "<a class='btn btn-sm btn-success pull-left' id='article_preview_btn' data-bind='"+ row.id +"'>预览</a>"+
                  		 "&nbsp;&nbsp;<a class='btn btn-sm btn-primary' id='article_edit_btn' data-bind='"+ JSON.stringify(row) +"'>编辑</a>"+
-                 	     "&nbsp;&nbsp;<a class='btn btn-sm btn-danger' id='article_del_btn' data-bind='"+ row.id +"'>删除</a>"
+                 	     "&nbsp;&nbsp;<a class='btn btn-sm btn-danger' id='article_del_btn' data-bind='"+ JSON.stringify(row) +"'>删除</a>"
                       return content
                   } }
              ]
@@ -40,14 +40,28 @@ var Articles = function(){
          
          $('#article_lists').on('click', '#article_preview_btn', function(){
         	 var id = $(this).attr('data-bind');
+        	 window.location.href = '/article/preview/' +id;
+        	 
          });
      	
      	$('#article_lists').on('click', '#article_edit_btn', function(){
      		var article = JSON.parse($(this).attr('data-bind'))
+     		window.location.href = '/articles/edit/' + article.id;
      		
-         });
+     	})
      	$('#article_lists').on('click', '#article_del_btn', function(){
-     		var id = $(this).attr('data-bind');
+     		var article = JSON.parse($(this).attr('data-bind'))
+
+     		modals.confirm('确认删除文章 ' + article.title, function() {
+ 	        	$.ajax({
+ 	        		url:'/articles/' +article.id,
+ 	        		type: "delete",
+ 	                async: false,
+ 	               success: function (result) {
+ 	            	  modals.info(result.message);
+ 	               }
+ 	            })
+            })
          });
 }
 

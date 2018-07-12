@@ -21,7 +21,7 @@ import com.kyler.space.sys.pojo.Article;
 import com.kyler.space.sys.service.ArticleService;
 
 /**
- * 项目
+ * 文章
  */
 @Controller
 public class ArticleRestController {
@@ -32,11 +32,14 @@ public class ArticleRestController {
     @RequestMapping(method = RequestMethod.GET, value = "/articles/{articleSid}")
 	@ResponseBody
     private RestResult findArticleById(@PathVariable String articleSid){
-    	Article article = this.articleService.selectByPrimaryKey(articleSid);
-		return new RestResult(RestResult.SUCCESS, "", article);
+    	if(null != articleSid){
+    		Article article = this.articleService.selectByPrimaryKey(articleSid);
+    		return new RestResult(RestResult.SUCCESS, "", article);
+    	}
+    	return new RestResult(RestResult.FAILURE, "没有查询到信息", null);
 	}
 	
-	@GetMapping("/articles/list")
+	@GetMapping("/articles")
 	@ResponseBody
 	public List<Article> selectArticles(HttpServletRequest request){
 		Criteria example = new Criteria();
@@ -44,7 +47,7 @@ public class ArticleRestController {
 		return articles;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/articles/save")
+	@RequestMapping(method = RequestMethod.POST, value = "/articles")
     @ResponseBody
     private RestResult saveArticle(Article article, HttpServletRequest request){
 		int result = 0;
@@ -66,9 +69,9 @@ public class ArticleRestController {
 			result = this.articleService.updateByPrimaryKey(article);
 		}
 		if(result ==1){
-			return new RestResult(RestResult.SUCCESS,"项目更新成功");
+			return new RestResult(RestResult.SUCCESS,"文章更新成功");
 		}else{
-			return new RestResult(RestResult.FAILURE,"项目更新失败");
+			return new RestResult(RestResult.FAILURE,"文章更新失败");
 		}
 	}
 	
@@ -77,9 +80,20 @@ public class ArticleRestController {
     private RestResult deleteArticle(@PathVariable String articleSid){
 		int result = this.articleService.deleteByPrimaryKey(articleSid);
 		if(result ==1){
-			return new RestResult(RestResult.SUCCESS,"项目删除成功");
+			return new RestResult(RestResult.SUCCESS,"文章删除成功");
 		}else{
-			return new RestResult(RestResult.FAILURE,"项目删除失败");
+			return new RestResult(RestResult.FAILURE,"文章删除失败");
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/articles/edit/{id}")
+    public String article_edit(@PathVariable String id,HttpServletRequest request) {
+		if(null != id){
+    		Article article = this.articleService.selectByPrimaryKey(id);
+    		request.setAttribute("article", article);
+    	}
+		request.setAttribute("level", 1);
+		
+        return "markdown/article_edit";
 	}
 }
