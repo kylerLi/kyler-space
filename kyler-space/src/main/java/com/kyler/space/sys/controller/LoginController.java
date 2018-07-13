@@ -30,21 +30,21 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET, value = "/system")
     public String system(HttpServletRequest request) {
 		request.setAttribute("template_path", "system/sys-m-mgt");
-		request.setAttribute("path", "markdown/article_edit");
-		request.setAttribute("fragment", "edit");
-		request.setAttribute("active_left_menu", "article_edit");
+		request.setAttribute("path", "markdown/article_write");
+		request.setAttribute("fragment", "write");
+		request.setAttribute("active_left_menu", "article_write");
 		request.setAttribute("active_head", "system");
 		request.setAttribute("level", 1);
         return "index";
 	}
 	
 	 
-	@RequestMapping(method = RequestMethod.GET, value = "/markdown/article_edit")
+	@RequestMapping(method = RequestMethod.GET, value = "/markdown/article_write")
     public String article_edit(HttpServletRequest request) {
 		request.setAttribute("template_path", "system/sys-m-mgt");
-		request.setAttribute("path", "markdown/article_edit");
-		request.setAttribute("fragment", "edit");
-		request.setAttribute("active_left_menu", "article_edit");
+		request.setAttribute("path", "markdown/article_write");
+		request.setAttribute("fragment", "write");
+		request.setAttribute("active_left_menu", "article_write");
 		request.setAttribute("active_head", "system");
         
 		request.setAttribute("level", 1);

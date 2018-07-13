@@ -65,4 +65,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return this.articleMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Article> selectSummaryByParams(Criteria example) {
+		// TODO Auto-generated method stub
+		return this.articleMapper.selectSummaryByParams(example);
+	}
+
 }

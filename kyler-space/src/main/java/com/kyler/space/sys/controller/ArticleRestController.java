@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kyler.space.common.Criteria;
 import com.kyler.space.common.pojo.RestResult;
+import com.kyler.space.common.util.WebUtil;
 import com.kyler.space.sys.pojo.Article;
 import com.kyler.space.sys.service.ArticleService;
 
@@ -47,11 +48,25 @@ public class ArticleRestController {
 		return articles;
 	}
 	
+	/**
+	 * 查詢概要信息列表
+	 * @param request
+	 * @return
+	 */
+	@GetMapping("/articles/summarylists")
+	@ResponseBody
+	public List<Article> selectArticlesList(HttpServletRequest request){
+		Criteria example = new Criteria();
+		List<Article> articles = this.articleService.selectSummaryByParams(example);
+		return articles;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/articles")
     @ResponseBody
     private RestResult saveArticle(Article article, HttpServletRequest request){
 		int result = 0;
 		if(null != article){
+			WebUtil.prepareInsertParams(article);
 			result = this.articleService.insertSelective(article);
 		}
 		if(result ==1){
@@ -61,11 +76,12 @@ public class ArticleRestController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/articles/{articleSid}")
+	@RequestMapping(method = RequestMethod.POST, value = "/articles/update")
     @ResponseBody
-    private RestResult updateArticle(@PathParam("articleSid")int articleSid,Article article, HttpServletRequest request){
+    private RestResult updateArticle(Article article, HttpServletRequest request){
 		int result = 0;
 		if(null != article){
+			WebUtil.prepareUpdateParams(article);
 			result = this.articleService.updateByPrimaryKey(article);
 		}
 		if(result ==1){
@@ -92,8 +108,17 @@ public class ArticleRestController {
     		Article article = this.articleService.selectByPrimaryKey(id);
     		request.setAttribute("article", article);
     	}
-		request.setAttribute("level", 1);
 		
         return "markdown/article_edit";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/articles/preview/{id}")
+    public String article_preview(@PathVariable String id,HttpServletRequest request) {
+		if(null != id){
+    		Article article = this.articleService.selectByPrimaryKey(id);
+    		request.setAttribute("article", article);
+    	}
+		
+        return "markdown/article_preview";
 	}
 }

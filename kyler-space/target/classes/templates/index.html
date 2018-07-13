@@ -6,7 +6,7 @@
 <body class="skin-black" >
     <div th:include='header :: header(${active_head})'></div>
     <div th:if="${level} == '0'">
-        <div th:replace="@{${template_path}} :: ${template_fragment}"></div>
+        <div th:replace="@{${template_path}} :: ${template_fragment}" style="width:85%"></div>
     </div>
     <div th:if="${level} == '1'">
         <div th:replace="@{${template_path}} :: mgt(${path},${fragment},${active_left_menu})"></div>

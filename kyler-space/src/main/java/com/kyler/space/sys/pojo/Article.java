@@ -8,11 +8,15 @@ public class Article implements Serializable {
 
     private String id;
 
-    private Date createDateTime;
-
     private String status;
 
-    private Date updateDateTime;
+    private Date createdDt;
+    
+    private Date updatedDt;
+    
+    private Date createdBy;
+    
+    private Date updateBy;
 
     private Integer version;
 
@@ -40,28 +44,12 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public Date getCreateDateTime() {
-        return createDateTime;
-    }
-
-    public void setCreateDateTime(Date createDateTime) {
-        this.createDateTime = createDateTime;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getUpdateDateTime() {
-        return updateDateTime;
-    }
-
-    public void setUpdateDateTime(Date updateDateTime) {
-        this.updateDateTime = updateDateTime;
     }
 
     public Integer getVersion() {
@@ -134,6 +122,38 @@ public class Article implements Serializable {
 
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	public Date getCreatedDt() {
+		return createdDt;
+	}
+
+	public void setCreatedDt(Date createdDt) {
+		this.createdDt = createdDt;
+	}
+
+	public Date getUpdatedDt() {
+		return updatedDt;
+	}
+
+	public void setUpdatedDt(Date updatedDt) {
+		this.updatedDt = updatedDt;
+	}
+
+	public Date getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Date createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(Date updateBy) {
+		this.updateBy = updateBy;
 	}
     
     

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="edit">
-<head>
+<header th:replace="resources::resources-file">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -20,15 +20,17 @@
 		    position: relative;
 	    }
 	 </style>
-</head>
+</header>
 <body>
-<div class="row" style="height:20px"></div>
-<div class="row">
+<div th:include='header :: header(${active_head})'></div>
+<div class="wrapper row-offcanvas row-offcanvas-left" id="mainDiv" style="margin: 0% 4%" th:fragment="mgt(path,fragment,active)" xmlns:th="http://www.thymeleaf.org">
+    <div class="row" style="height:20px"></div>
+    <div class="row">
 		<div class="col-md-12">
-			<!--breadcrumbs start -->
+			
 			<ul class="breadcrumb" style="background-color:#fff">
-				<li><a href="#"><i class="fa fa-home"></i> 系统管理</a></li>
-				<li><a href="#">写博客</a></li>
+				<li><a href="#"><i class="fa fa-home"></i> 文章管理</a></li>
+				<li><a href="#">編輯文章</a></li>
 				<li class="active">当前页</li>
 			</ul>
 		</div>
@@ -36,16 +38,16 @@
 	<div class="row">
         <div class="col-sm-12">
             <div class="box box-primary">
-                <div class="box-header bg-info" style="padding-bottom: 0">
-                    <div class="row" style="padding-bottom:5px;">
-                        <div class="col-sm-7">
-                            <div clas="form-group">
+                <div class="box-header bg-info" >
+                    <div class="row" style="padding:5px;">
+                        <div class="col-sm-7" >
+                            <div clas="form-group" style="padding-left:1%;width:98.5%">
                               <input class="form-control" type="text" id="title" placeholder="请输入文章标题……"/>
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div clas="form-group">
-                                <input  type="text" id="keywords" data-role="tagsinput" placeholder="关键字" />
+                                <input  type="text" id="keywords" data-role="tagsinput" placeholder="請輸入关键字" />
                             </div>
                         </div>
                     </div>
@@ -100,7 +102,7 @@
             </div>
         </div>
     </div>
-
+</div>
 <script th:src="@{/js/jquery.min.js}" src="/js/jquery.min.js"></script>
 <script th:src="@{/editormd/js/editormd.js}" src="/editormd/js/editormd.js"></script>
 <script th:src="@{/iCheck/icheck.min.js}" src="/iCheck/icheck.min.js"></script>
@@ -199,7 +201,23 @@ $(function () {
 
     //markdown 默认内容
     var markdownContent = null;
-
+    var article = [[${article}]]
+    if(article){
+        $("#title").val(article.title);
+        $("#keywords").tagsinput("add",article.keywords);
+        markdownContent = article.content;
+    }else{
+    	$.ajax({
+            type: "get",
+            url: "/editormd/readme.md",
+            async: false,
+            success: function (md) {
+                markdownContent = md;
+            }
+        });
+    }
+    $("#articleId").val(article.id);
+    
     editor = editormd("editormd", {
     	theme: (localStorage.theme) ? localStorage.theme : "default",
         previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
@@ -210,7 +228,7 @@ $(function () {
         codeFold : true,
         searchReplace : true,
         saveHTMLToTextarea : true,
-
+        markdown: markdownContent,
         htmlDecode: "style,script,iframe",
         tex: true,
         emoji: true,
@@ -227,18 +245,6 @@ $(function () {
             localStorage.markdownContent = editor.getMarkdown();
         }
     });
-    var article = [[${article}]]
-    console.log(article)
-    if(article){
-    	
-            $("#title").val(article.title);
-            $("#keywords").tagsinput("add",article.keywords);
-            editor.setMarkdown(article.content);
-    }
-    $("#articleId").val(article.id);
-
-
-    
     $('#editormd-theme-select').bind("change", function () {
         var theme = $(this).val();
         if (theme === "") {
@@ -278,18 +284,25 @@ $(function () {
     //保存文章
     $("#markdown-save").click(function(){
         var obj_md={};
+        var action;
         obj_md["content"]=editor.getMarkdown();
         obj_md["keywords"]=$("#keywords").val();
         obj_md["title"]=$("#title").val();
-       // obj_md["id"]="${id?default('')}";
+        if('' === $("#articleId").val()){
+        	action = "/articles"
+        }else{
+        	obj_md["id"]=$("#articleId").val();
+        	action = "/articles/update"
+        }
+        
         $.ajax({
             type: "post",
-            url: "/articles/save",
+            url: action,
             async: false,
             data:obj_md,
             success: function (result) {
+            	modals.info(result.message);
             	if(result.status == 'success'){
-            		alert(result.content)
             		localStorage.markdownContent = '';
             	}
                 

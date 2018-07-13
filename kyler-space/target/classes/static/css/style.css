@@ -633,17 +633,17 @@ Gradient Background colors
     Components: navbar, logo and content header
 -------------------------------------------------
 */
-body > .header {
+ .header {
   position: relative;
   max-height: 100px;
   z-index: 1030;
 }
-body > .header .navbar {
+ .header .navbar {
   height: 50px;
   margin-bottom: 0;
   /*margin-left: 220px;*/
 }
-body > .header .navbar .sidebar-toggle {
+ .header .navbar .sidebar-toggle {
   float: left;
   padding: 9px 5px;
   margin-top: 8px;
@@ -657,10 +657,10 @@ body > .header .navbar .sidebar-toggle {
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
 }
-body > .header .navbar .sidebar-toggle:hover .icon-bar {
+ .header .navbar .sidebar-toggle:hover .icon-bar {
   background: #f6f6f6;
 }
-body > .header .navbar .sidebar-toggle .icon-bar {
+ .header .navbar .sidebar-toggle .icon-bar {
   display: block;
   width: 22px;
   height: 2px;
@@ -668,7 +668,7 @@ body > .header .navbar .sidebar-toggle .icon-bar {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
+ .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
 body > .header .navbar .nav > li.user > a {
@@ -4230,3 +4230,13 @@ padding: 6px 10px;
 
 .movel {float:right}
 .mover{float:right}
+
+/* markdown 文章目录位置 */
+.navbar-fixed-middle {
+    position: fixed;
+    z-index: 1031;
+    bottom:30px;
+    right: 15px;
+    margin-bottom: 0;
+    border-width: 1px 0 0;
+}

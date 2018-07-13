@@ -21,6 +21,8 @@ public interface ArticleMapper {
 
     List<Article> selectByParams(Criteria example);
 
+    List<Article> selectSummaryByParams(Criteria example);
+    
     int updateByParams(@Param("record") Article record, @Param("condition") Map<String, Object> condition);
 
     int updateByPrimaryKey(Article record);

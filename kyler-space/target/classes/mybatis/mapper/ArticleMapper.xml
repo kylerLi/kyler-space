@@ -3,9 +3,10 @@
 <mapper namespace="com.kyler.space.sys.dao.ArticleMapper" >
   <resultMap id="BaseResultMap" type="com.kyler.space.sys.pojo.Article" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="create_date_time" property="createDateTime" jdbcType="TIMESTAMP" />
+    
     <result column="status" property="status" jdbcType="CHAR" />
-    <result column="update_date_time" property="updateDateTime" jdbcType="TIMESTAMP" />
+    <result column="CREATED_DT" property="createdDt" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_DT" property="updatedDt" jdbcType="TIMESTAMP" />
     <result column="version" property="version" jdbcType="INTEGER" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
@@ -19,14 +20,14 @@
   </resultMap>
   <sql id="Example_Where_Clause" >
     <trim prefix="where" prefixOverrides="and|or" >
-      <if test="condition.createDateTime != null" >
-         and create_date_time = #{condition.createDateTime}
+      <if test="condition.createdDt != null" >
+         and CREATED_DT = #{condition.createdDt}
       </if>
       <if test="condition.status != null" >
          and status = #{condition.status}
       </if>
-      <if test="condition.updateDateTime != null" >
-         and update_date_time = #{condition.updateDateTime}
+      <if test="condition.updatedDt != null" >
+         and UPDATED_DT = #{condition.updatedDt}
       </if>
       <if test="condition.version != null" >
          and version = #{condition.version}
@@ -58,7 +59,7 @@
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_date_time, status, update_date_time, version, keywords, title, user_id, content,
+    id, CREATED_DT, status, UPDATED_DT, version, keywords, title, user_id, content,
     code, author, tag_id
   </sql>
   <sql id="Blob_Column_List" >
@@ -70,12 +71,30 @@
     from blog_article
     where id = #{id}
   </select>
+  
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
+    from blog_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  <select id="selectSummaryByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    id, CREATED_DT, status, UPDATED_DT, version, keywords, title, user_id, 
+    code, author, tag_id
     from blog_article
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -100,9 +119,9 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       SELECT UUID()
     </selectKey>
-    insert into blog_article (id, create_date_time, status, update_date_time, version, keywords, 
+    insert into blog_article (id, CREATED_DT, status, UPDATED_DT, version, keywords, 
       title, user_id, code, author, tag_id, content, summary)
-    values (#{id}, #{createDateTime}, #{status}, #{updateDateTime}, #{version}, #{keywords}, 
+    values (#{id}, #{createdDt}, #{status}, #{updatedDt}, #{version}, #{keywords}, 
       #{title}, #{userId}, #{code}, #{author}, #{tagId}, #{content}, #{summary})
   </insert>
   <insert id="insertSelective" parameterType="com.kyler.space.sys.pojo.Article" >
@@ -114,14 +133,14 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="createDateTime != null" >
-        create_date_time,
+      <if test="createdDt != null" >
+        CREATED_DT,
       </if>
       <if test="status != null" >
         status,
       </if>
-      <if test="updateDateTime != null" >
-        update_date_time,
+      <if test="updatedDt != null" >
+        UPDATED_DT,
       </if>
       <if test="version != null" >
         version,
@@ -155,14 +174,14 @@
       <if test="id != null" >
         #{id},
       </if>
-      <if test="createDateTime != null" >
-        #{createDateTime},
+      <if test="createdDt != null" >
+        #{createdDt},
       </if>
       <if test="status != null" >
         #{status},
       </if>
-      <if test="updateDateTime != null" >
-        #{updateDateTime},
+      <if test="updatedDt != null" >
+        #{updatedDt},
       </if>
       <if test="version != null" >
         #{version},
@@ -205,14 +224,14 @@
       <if test="record.id != null" >
         id = #{record.id},
       </if>
-      <if test="record.createDateTime != null" >
-        create_date_time = #{record.createDateTime},
+      <if test="record.createdDt != null" >
+        CREATED_DT = #{record.createdDt},
       </if>
       <if test="record.status != null" >
         status = #{record.status},
       </if>
-      <if test="record.updateDateTime != null" >
-        update_date_time = #{record.updateDateTime},
+      <if test="record.updatedDt != null" >
+        UPDATED_DT = #{record.updatedDt},
       </if>
       <if test="record.version != null" >
         version = #{record.version},
@@ -250,14 +269,15 @@
   <update id="updateByParams" parameterType="map" >
     update blog_article
     set id = #{record.id},
-      create_date_time = #{record.createDateTime},
+      CREATED_DT = #{record.createdDt},
       status = #{record.status},
-      update_date_time = #{record.updateDateTime},
+      UPDATED_DT = #{record.updatedDt},
       version = #{record.version},
       keywords = #{record.keywords},
       title = #{record.title},
       user_id = #{record.userId},
       code = #{record.code},
+      content = #{content},
       author = #{record.author},
       tag_id = #{record.tagId}
     <if test="_parameter != null" >
@@ -267,14 +287,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.kyler.space.sys.pojo.Article" >
     update blog_article
     <set >
-      <if test="createDateTime != null" >
-        create_date_time = #{createDateTime},
+      <if test="createdDt != null" >
+        CREATED_DT = #{createdDt},
       </if>
       <if test="status != null" >
         status = #{status},
       </if>
-      <if test="updateDateTime != null" >
-        update_date_time = #{updateDateTime},
+      <if test="updatedDt != null" >
+        UPDATED_DT = #{updatedDt},
       </if>
       <if test="version != null" >
         version = #{version},
@@ -290,6 +310,9 @@
       </if>
       <if test="code != null" >
         code = #{code},
+      </if>
+      <if test="content != null" >
+        content = #{content},
       </if>
       <if test="author != null" >
         author = #{author},
@@ -309,14 +332,15 @@
 
   <update id="updateByPrimaryKey" parameterType="com.kyler.space.sys.pojo.Article" >
     update blog_article
-    set create_date_time = #{createDateTime},
+    set CREATED_DT = #{createdDt},
       status = #{status},
-      update_date_time = #{updateDateTime},
+      UPDATED_DT = #{updatedDt},
       version = #{version},
       keywords = #{keywords},
       title = #{title},
       user_id = #{userId},
       code = #{code},
+      content = #{content},
       author = #{author},
       tag_id = #{tagId}
     where id = #{id}

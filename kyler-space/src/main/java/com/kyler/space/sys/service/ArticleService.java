@@ -11,6 +11,8 @@ public interface ArticleService {
     Article selectByPrimaryKey(String id);
 
     List<Article> selectByParams(Criteria example);
+    
+    List<Article> selectSummaryByParams(Criteria example);
 
     int deleteByPrimaryKey(String id);
 
