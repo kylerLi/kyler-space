@@ -353,8 +353,8 @@ public class WebUtil {
 //			// 更新人
 //			invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
 //		}else{
-//			invokeSet(obj, "createdBy", "admin");
-//			invokeSet(obj, "updatedBy", "admin");
+			//invokeSet(obj, "createdBy", "admin");
+			//invokeSet(obj, "updatedBy", "admin");
 //		}
 		Date date = new Date();
 		// 更新时间
@@ -417,7 +417,7 @@ public class WebUtil {
 //			// 更新人
 //			invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
 //		}else{
-//			invokeSet(obj, "updatedBy", "admin");
+			//invokeSet(obj, "updatedBy", "admin");
 //		}
 		// 更新时间
 		Date date = new Date();

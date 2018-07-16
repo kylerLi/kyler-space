@@ -19,7 +19,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@MapperScan("com.kyler.space.sys.dao")
+@MapperScan("com.kyler.space.*.dao")
 public class BootstrapApplication {
 
 	public static void main(String[] args) {

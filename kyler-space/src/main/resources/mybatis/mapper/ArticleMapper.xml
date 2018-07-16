@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kyler.space.sys.dao.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.kyler.space.sys.pojo.Article" >
+<mapper namespace="com.kyler.space.blog.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.kyler.space.blog.pojo.Article" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     
     <result column="status" property="status" jdbcType="CHAR" />
@@ -115,7 +115,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kyler.space.sys.pojo.Article" >
+  <insert id="insert" parameterType="com.kyler.space.blog.pojo.Article" >
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       SELECT UUID()
     </selectKey>
@@ -124,7 +124,7 @@
     values (#{id}, #{createdDt}, #{status}, #{updatedDt}, #{version}, #{keywords}, 
       #{title}, #{userId}, #{code}, #{author}, #{tagId}, #{content}, #{summary})
   </insert>
-  <insert id="insertSelective" parameterType="com.kyler.space.sys.pojo.Article" >
+  <insert id="insertSelective" parameterType="com.kyler.space.blog.pojo.Article" >
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       SELECT UUID()
     </selectKey>
@@ -284,7 +284,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kyler.space.sys.pojo.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.kyler.space.blog.pojo.Article" >
     update blog_article
     <set >
       <if test="createdDt != null" >
@@ -330,7 +330,7 @@
     where id = #{id}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.kyler.space.sys.pojo.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.kyler.space.blog.pojo.Article" >
     update blog_article
     set CREATED_DT = #{createdDt},
       status = #{status},

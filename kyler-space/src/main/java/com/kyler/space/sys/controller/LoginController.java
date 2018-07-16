@@ -52,7 +52,7 @@ public class LoginController {
         return "index";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/markdown/article_list")
+	@RequestMapping(method = RequestMethod.GET, value = "/system/article_list")
     public String article_list(HttpServletRequest request) {
 		request.setAttribute("template_path", "system/sys-m-mgt");
 		request.setAttribute("path", "markdown/article_list");
