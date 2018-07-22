@@ -23,8 +23,16 @@ var Articles = function(){
      			 {title:"文章标题",mData:'title'},
                   {title:"关键字",mData:'keywords'},
                   {title:"作者",mData:'author'},
-                  {title:"写作时间",mData:'createdDt'},
-                  {title:"更新时间",mData:'updatedDt'},
+                  {title:"写作时间",mData:'createdDt',type:'date',"render": function (data) {
+                      var date = new Date(data);
+                      var month = date.getMonth() + 1;
+                      return date.getFullYear()+"-" + (month.length > 1 ? month : "0" + month) + "-" + date.getDate();
+                  }},
+                  {title:"更新时间",mData:'updatedDt',type:'date',"render": function (data) {
+                      var date = new Date(data);
+                      var month = date.getMonth() + 1;
+                      return date.getFullYear()+"-" + (month.length > 1 ? month : "0" + month) + "-" + date.getDate();
+                  }},
                   {title:"标签",mData:'tagId'},
                   {title:"状态",mData:'status'},
                   {title:"",mData:'',render: function ( data, type, row) {

@@ -23,7 +23,7 @@
   <sql id="Base_Column_List" >
     CATEGORY_SID, CODE_CATEGORY, CODE_CATEGORY_NM, STATE
   </sql>
-  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.sys.pojo.Criteria" >
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
     select
     <if test="distinct" >
       distinct
@@ -48,7 +48,7 @@
     delete from sys_m_code_category
     where CATEGORY_SID = #{categorySid}
   </delete>
-  <delete id="deleteByParams" parameterType="com.kyler.space.sys.pojo.Criteria" >
+  <delete id="deleteByParams" parameterType="com.kyler.space.common.Criteria" >
     delete from sys_m_code_category
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -91,7 +91,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByParams" parameterType="com.kyler.space.sys.pojo.Criteria" resultType="java.lang.Integer" >
+  <select id="countByParams" parameterType="com.kyler.space.common.Criteria" resultType="java.lang.Integer" >
     select count(*) from sys_m_code_category
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

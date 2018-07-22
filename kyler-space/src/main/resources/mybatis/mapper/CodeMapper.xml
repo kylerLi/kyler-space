@@ -60,7 +60,7 @@
     CODE_SID, CODE_CATEGORY, CODE_VALUE, CODE_DISPLAY, PARENT_CODE_VALUE, ENABLED, SORT, 
     DESCRIPTION, CREATED_BY, CREATED_DT, UPDATED_BY, UPDATED_DT, VERSION
   </sql>
-  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.sys.pojo.Criteria" >
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.kyler.space.common.Criteria" >
     select
     <if test="distinct" >
       distinct
@@ -85,7 +85,7 @@
     delete from sys_m_code
     where CODE_SID = #{codeSid}
   </delete>
-  <delete id="deleteByParams" parameterType="com.kyler.space.sys.pojo.Criteria" >
+  <delete id="deleteByParams" parameterType="com.kyler.space.common.Criteria" >
     delete from sys_m_code
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -186,7 +186,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByParams" parameterType="com.kyler.space.sys.pojo.Criteria" resultType="java.lang.Integer" >
+  <select id="countByParams" parameterType="com.kyler.space.common.Criteria" resultType="java.lang.Integer" >
     select count(*) from sys_m_code
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
