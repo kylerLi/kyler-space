@@ -5,4 +5,4 @@ mysql 5.7
 src/main/resources/application.properties
 setting: port、database、context-path.
 
-http://${ip}:{port}/jycloud-portal
+http://${ip}:{port}/jycloud-portal  
