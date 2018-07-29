@@ -115,7 +115,8 @@ public class ArticleRestController {
     		Article article = this.articleService.selectByPrimaryKey(id);
     		request.setAttribute("article", article);
     	}
-		
+		request.setAttribute("active_head", "blogs");
+		request.setAttribute("level", 0);
         return "markdown/article_preview";
 	}
 }

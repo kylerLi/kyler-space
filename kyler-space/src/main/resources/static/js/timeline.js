@@ -61,13 +61,21 @@
          timeline_header.innerHTML = '<a href="'+ config.url + data['id'] + '" >' + data['title'] + '</a>'
         // timeline_header.innerHTML = '<a th:href="@{'+ config.url + data['id'] + '}" >' + data['title'] + '</a>' 
 
+         var time_body = document.createElement('DIV');
+         time_body.className = 'timeline-body row';
          
          //概要
          var timeline_body = document.createElement('DIV');
-         timeline_body.className = 'timeline-body';
+         timeline_body.className = 'col-md-9 timeline-body';
          var title_length = data['title'].length
          timeline_body.innerHTML = data['content'].substring(title_length+3,300)
-        	 
+        	
+         //概要
+         var img_body = document.createElement('DIV');
+         img_body.className = 'col-md-3';
+         img_body.innerHTML = '<img class="img-responsive" src="/images/photo4.jpg" alt="Photo">'
+    	 time_body.appendChild(timeline_body)
+    	 time_body.appendChild(img_body)
          //评论标签
          var tags = ''
          var keywords = data["keywords"].split(',')
@@ -83,7 +91,7 @@
         	 +'<a class="fa fa-eye">100</a>' + tags
          
      	 timeline_item.appendChild(timeline_header)
-     	 timeline_item.appendChild(timeline_body)
+     	 timeline_item.appendChild(time_body)
      	 timeline_item.appendChild(timeline_footer)
          timelabel_content.appendChild(timeline_item);
          return timelabel_content

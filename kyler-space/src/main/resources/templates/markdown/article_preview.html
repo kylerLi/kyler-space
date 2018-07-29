@@ -1,69 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="edit">
-<header th:replace="resources::resources-file">
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Kyler.space</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
-    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" href="/editormd/css/editormd.css"/>
-    <link rel="stylesheet" th:href="@{/tagsinput/app.css}" href="/tagsinput/app.css" />
-    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
-     <style type="text/css">
-	    .box-header {
-		    color: #444;
-		    display: block;
-		    padding: 10px;
-		    position: relative;
-	    }
-	 </style>
-</header>
-<body>
-<div th:include='header :: header(${active_head})'></div>
-<div class="wrapper row-offcanvas row-offcanvas-left" id="mainDiv" style="margin: 0% 4%" xmlns:th="http://www.thymeleaf.org">
-    <div class="row" style="height:20px"></div>
-    <!-- <div class="row">
-		<div class="col-md-12">
-			
-			<ul class="breadcrumb" style="background-color:#fff">
-				<li><a href="#"><i class="fa fa-home"></i> 文章管理</a></li>
-				<li><a href="#">预览文章</a></li>
-				<li class="active">当前页</li>
-			</ul>
-		</div>
-	</div> -->
-	<!-- <div class="row">
-        <div class="col-sm-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                <h4 class="box-title" style="padding-right:20px;"><i class="fa fa-hand-o-left">&nbsp;文章目录</i></h4>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body" style="padding-left:0">
-                <div  id="custom-toc-container"></div>
-            </div>
-            </div>
-        </div>
-    </div> -->
+<header th:replace="resources::resources-file"></header>
+
+<body class="skin-black" >
+    <div th:include='header :: header(${active_head})'></div>
+    <div class="wrapper row-offcanvas row-offcanvas-left" id="mainDiv" style="margin: 0% 4%" xmlns:th="http://www.thymeleaf.org">
     <section class="content">
 	    <div class="row form-horizontal">
 	        <div class="col-md-12">
 	            <div class="box box-primary">
-	                <div class="box-header text-center">
-	                        <div clas="form-group">
-	                            <label id="title" style="font-size:21px;font-weight:normal"></label>
+	                <div class="box-header box-primary text-center">
+	                        <div class="panel-heading" style="padding-top:10px">
+	                            <label id="title" style="font-size:21px;font-weight:blod"></label>
 	                        </div>
-	                        <div clas="form-group">
+	                        <div style="padding:10px">
 	                            <label style="font-weight: normal">关键字：</label>
 	                            <label id="keywords"></label>
 	                        </div>
 	                </div>
 	                <div clas="box-body">
-	                    <div id="editormd">
+	                    <div id="editormd" >
 	                        <textarea id="append-test" style="display:none;"></textarea>
 	                    </div>
 	                </div>
@@ -73,10 +29,9 @@
 	    </div>
 
 	    <div class="navbar-fixed-middle">
-	        <div class="box box-primary box-solid">
+	        <div class="box box-blue box-solid">
 	            <div class="box-header with-border">
 	                <h4 class="box-title" style="padding-right:20px;"><i class="fa fa-hand-o-left">&nbsp;文章目录</i></h4>
-	
 	                <div class="box-tools pull-right">
 	                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 	                    </button>
@@ -84,7 +39,7 @@
 	                <!-- /.box-tools -->
 	            </div>
 	            <!-- /.box-header -->
-	            <div class="box-body" style="padding-left:0">
+	            <div class="box-body" style="padding-left:0;border:3px solid #c5d0ea;">
 	                <div  id="custom-toc-container"></div>
 	            </div>
 	            <!-- /.box-body -->
@@ -93,6 +48,14 @@
 </section>
 
 </div>
+    	
+    
+    <div class="footer-main" th:fragment="footer">
+	    Copyright &copy; 2018.  <a href="http://www.kyler.space/" target="_blank" title="Kyler.space">Kyler.space</a>
+    </div>
+</body>
+
+
 <script th:src="@{/js/jquery.min.js}" src="/js/jquery.min.js"></script>
 <script th:src="@{/editormd/js/editormd.js}" src="/editormd/js/editormd.js"></script>
 <script th:src="@{/editormd/lib/marked.min.js}" src="/editormd/lib/marked.min.js"></script>
@@ -132,6 +95,4 @@
 /*]]>*/
     
 </script>
-
-</body>
 </html>

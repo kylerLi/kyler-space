@@ -65,6 +65,19 @@
 .timeline > li > .timeline-item > .timeline-footer {
   padding: 10px;
 }
+
+.timeline > li > .timeline-item > .timeline-body{
+    margin:10px;
+    color: #666;
+    background-color: #f6f6f6;
+    border: 1px solid #e5e5e5;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: auto;
+}
+
 .timeline > li > .fa,
 .timeline > li > .glyphicon,
 .timeline > li > .ion {
