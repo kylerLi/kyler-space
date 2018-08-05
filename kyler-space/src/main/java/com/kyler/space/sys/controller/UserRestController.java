@@ -38,9 +38,7 @@ public class UserRestController {
 	public List<User> selectUsers(){
 		Criteria example = new Criteria();
 		List<User> user = this.userService.selectByParams(example);
-		if(null != user){
-			System.out.println(user.size());
-		}
+		
 		return user;
 	}
 	

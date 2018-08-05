@@ -1,15 +1,131 @@
 <div class="wrapper row-offcanvas row-offcanvas-left" id="mainDiv" th:fragment="list">
 	<div class="row" style="height: 20px"></div>
-	<div class="row">
-		<div class="col-md-12">
-			<ul class="breadcrumb" style="background-color: #fff">
-				<li><a href="#"><i class="fa fa-home"></i> 系统管理</a></li>
-				<li><a href="#">用户管理</a></li>
-				<li class="active">当前页</li>
-			</ul>
-		</div>
-	</div>
 	<section class="panel" style="min-height:800px;">
+		
+		<div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li><a href="#tab-content-edit" data-toggle="tab" id="nav-tab-edit"><i class="fa fa-user-plus"></i></a></li>
+                        <li class="active"><a href="#tab-content-list" data-toggle="tab" id="nav-tab-list"><i class="fa fa-list-ul">用户列表</i></a></li>
+                        
+						<li class="pull-left header"><i class="fa fa-users">用户管理</i></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-content-list">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="pull-right">
+                                        <!-- <button type="button" class="btn btn-primary" data-btn-type="add">添加</button> -->
+                                        <!-- <button type="button" class="btn btn-default" data-btn-type="edit">编辑</button>
+                                        <button type="button" class="btn btn-default" data-btn-type="delete">删除</button> -->
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="user_lists" class="table table-bordered table-hover" style="width:100%"></table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        
+                        <!-- /.tab-pane -->
+                        <!-- /.tab-pane -->
+<div class="tab-pane" id="tab-content-edit">
+	<div class="box box-info">
+		<!-- form start -->
+		<form id="user-form" name="user-form" class="form-horizontal">
+			<input type="hidden" name="userSid"></input>
+			<div class="box-body">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="name" class="col-sm-3 control-label">姓名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="name" name="realName"
+								placeholder="姓名"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="account" class="col-sm-3 control-label">账号</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="account"
+								name="account" placeholder="登录账号"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="telphone" class="col-sm-3 control-label">座机</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="telphone"
+								name="telphone" placeholder="座机"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="email" name="email"
+								placeholder="Email"></input>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">性别</label>
+						<div class="col-sm-6">
+							<label> <input type="radio" name="sex"
+								class="square-green" value="1" />男
+							</label>
+							<label> <input type="radio" name="sex"
+								class="square-green" value="0"/>女
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="birthday" class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="birthday"
+								name="birthday" placeholder="出生日期"
+								data-inputmask="'alias': 'yyyy/mm/dd'" ></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mobile" class="col-sm-2 control-label">手机</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="mobile" name="mobile"
+								placeholder="手机"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="password" name="password"
+								placeholder="Password"></input>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="box-footer text-right">
+				<button type="button" class="btn btn-default" data-btn-type="cancel">取消</button>
+				<button type="submit" class="btn btn-info">保存</button>
+			</div>
+		</form>
+	</div>
+	<!-- /.box -->
+</div>
+<!-- /.tab-pane -->
+
+
+                        
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+	</section>
+	<!-- <section class="panel" style="min-height:800px;">
 	    <header class="panel-heading">用户列表  </header>
         <div class="panel-body" id="noti-box">
 
@@ -67,5 +183,5 @@
 
 
         </div>
-    </section>
+    </section> -->
 </div>

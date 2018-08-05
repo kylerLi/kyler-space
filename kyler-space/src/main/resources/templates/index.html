@@ -17,6 +17,7 @@
     </div>
 </body>
 <script src="/js/article/article-datatables.js" th:src="@{/js/article/article-datatables.js}" ></script>
+<script src="/js/article/article-datatables.js" th:src="@{/js/system/user-datatables.js}" ></script>
 <script src="/js/blog/blog-timeline.js" th:src="@{/js/blog/blog-timeline.js}" ></script>
 <script type="text/javascript">
 /*<![CDATA[*/ 
@@ -25,6 +26,11 @@
 	
 	var blog = new Blog_Timeline();
 	blog.initBlog();
+	
+	var user = new SysUsers();
+	user.initFormValidator();
+	user.initDataTables();
+	user.initBtnBind();
 	/*]]>*/
 </script>
 </html>
